@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(express.static(__dirname +"/../client"));
+
+require('./routes')(app);
+
 const server = app.listen(8090, function(){
   console.log("app running on http://127.0.0.1:8090 ");
 })
