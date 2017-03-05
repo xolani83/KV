@@ -6,7 +6,9 @@ let verbSchema = mongoose.Schema({
   dict: String,
   meaning: String,
   stem: String,
-  futureStem: String,
+  present_base: String,
+  past_base: String,
+  future_base: String,
   isKnown: { type: Boolean, default: false },
   isFavourite: { type: Boolean, default: false }
 });

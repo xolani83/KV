@@ -1,0 +1,14 @@
+<div  ng-controller="overviewCtrl as vm">
+  <a href="#/"><i class="material-icons medium blue-grey-text">home</i></a>
+  <div class="container row">
+    <div class="card col s3 hoverable"  style="margin: 5px" ng-repeat="verb in vm.verbs" ng-click="vm.toggleFav(verb)">
+      <div class="card-content">
+          <h5 class="card-title">{{verb.dict}}<i class="material-icons right blue-grey-text" ng-show="verb.isFavourite">favorite</i></h5>
+          <h6>{{verb.meaning}}</h6>
+      </div>
+      <div class="card-action">
+            <a id="{{verb._id}}+'known'" ng-model="verb.isKnown">known</a>
+      </div>
+    </div>
+  </div>
+</div>

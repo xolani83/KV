@@ -1,0 +1,121 @@
+<div ng-controller="flashCardCtrl as vm">
+  <a href="#/"><i class="material-icons medium blue-grey-text">home_circle</i></a>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l6">
+        <div class="card blue-grey" style="height: 170px">
+          <div class="card-content white-text">
+            <h1 class="center">{{vm.score}} %</h1>
+          </div>
+        </div>
+
+        <div class="row" style="margin-left: 5px">
+          <i class="material-icons" style="color: #8b6e60" ng-click="vm.toggleOptions()">
+            settings</i>
+          <i class="material-icons" style="color: #8b6e60" ng-click="vm.toggleOptions()">
+            assessment</i>
+          <i class="material-icons" style="color: #8b6e60" ng-click="vm.toggleList()">
+            assignment</i>
+        </div>
+
+        <!-- OPTIONS -->
+        <div class="card blue-grey" style="height: 350px" ng-show="vm.showOptions">
+          <div class="card-content white-text" >
+            <div class="card-title">Options</div>
+            <div class="row">
+              <div class="col s6">
+                <h6>Settings</h6>
+                <div class="switch">
+                  <label class="white-text">
+                    All
+                    <input type="checkbox" ng-model="vm.favOnly" ng-change="vm.loadVerbs()">
+                    <span class="lever"></span>
+                    Favs
+                  </label>
+                </div>
+              </div>
+              <div class="col s6">
+                <h6>Conjugations</h6>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="must"
+                  ng-click="vm.setTense('must')">
+                  <label class="white-text" for="must">Must...</label>
+                </div>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="want"
+                  ng-click="vm.setTense('want')">
+                  <label class="white-text" for="want">Want..</label>
+                </div>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="going"
+                  ng-click="vm.setTense('goingTo')">
+                  <label class="white-text" for="going">Going to..</label>
+                </div>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="can"
+                  ng-click="vm.setTense('can')">
+                  <label class="white-text" for="can">Can...</label>
+                </div>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="cant"
+                  ng-click="vm.setTense('cant')">
+                  <label class="white-text" for="cant">Can't...</label>
+                </div>
+                <div class="inline-field">
+                  <input type="radio" class="with-gap" name="tenses" id="def"
+                  ng-click="vm.setTense('def')">
+                  <label class="white-text" for="def">Default</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIST -->
+        <div class="card blue-grey" style="height: 350px; overflow: scroll" ng-show="vm.showList">
+          <div class="card-content white-text">
+            <div class="card-title">Word list</div>
+            <h6 ng-repeat="word in vm.verbs">{{word.meaning}}</h6>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col s12 l6">
+        <div class="row" style="height: 350px">
+          <div ng-hide="vm.showAnswer">
+            <br><h1 class="col s12 center">{{vm.card.front}}</h1>
+          </div>
+          <div ng-show="vm.showAnswer">
+            <br>
+            <h1 class="col s12 center">{{vm.card.back}}</h1>
+            <h4 class="center">{{vm.card.front}}</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s4">
+            <i class="material-icons large align-center green-text"
+            ng-click="vm.tallyResult('correct')" ng-show="vm.showAnswer"
+            style="margin-left: 22%">check_circle</i>
+          </div>
+          <div class="col s4 offset-s4" ng-hide="vm.showAnswer">
+            <i class="material-icons large align-center blue-grey-text"
+             ng-click="vm.speak(vm.card.back)"
+             style="margin-left: 22%">play_circle_outline</i>
+          </div>
+          <div class="col s4" ng-show="vm.showAnswer">
+            <i class="material-icons large align-center blue-grey-text"
+            ng-click="vm.speak(vm.card.back)"
+            style="margin-left: 22%">play_circle_outline</i>
+          </div>
+          <div class="col s4">
+            <i class="material-icons large align-center red-text"
+            ng-click="vm.tallyResult('false')" ng-show="vm.showAnswer"
+            style="margin-left: 22%">cancel</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
